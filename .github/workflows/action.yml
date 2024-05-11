@@ -1,9 +1,13 @@
 name: Build and Publish Docker Image
 
 on:
+  workflow_dispatch:
   push:
     tags:
       - v*
+
+permissions: 
+  actions: write
 
 env:
   IMAGE_NAME: model_service
