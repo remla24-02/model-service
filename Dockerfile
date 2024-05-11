@@ -30,7 +30,7 @@ FROM install as app-image
 ENV PYTHONPATH=/home/remla24_team02/ PYTHONHASHSEED=0
 
 COPY app/ app/
-COPY .env config.ini ./
+COPY config.ini ./
 
 RUN addgroup --system --gid 1001 "app-user"
 RUN adduser --system --uid 1001 "app-user"
