@@ -9,6 +9,9 @@ from keras._tf_keras.keras.preprocessing.text import Tokenizer
 from keras._tf_keras.keras.preprocessing.sequence import pad_sequences
 from sklearn.preprocessing import LabelEncoder
 
+import lib_ml_remla24_team02 as lib_ml
+
+
 logger = AppLogger.__call__().get_logger()
 
 
@@ -29,6 +32,8 @@ class PhishingModel:
         tokenizer.fit_on_texts([payload.url])
         encoded_url = pad_sequences(
             tokenizer.texts_to_sequences([payload.url]), maxlen=200)
+
+        encoded_url = lib_ml.preprocess_single(payload.url)  # TODO
 
         logger.debug(f"Encoded URL: {encoded_url}")
 
