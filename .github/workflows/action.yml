@@ -2,15 +2,14 @@ name: Build and Publish Docker Image
 
 on:
   push:
-    branches:
-      - main
+    tags:
+      - v*
 
 env:
   IMAGE_NAME: model_service
   REGISTRY: ghcr.io
   USERNAME: ${{ github.repository_owner }}
-  RAW_TAG: ${{ github.ref }}
-  TAG: $(echo "${RAW_TAG}" | sed 's@refs/heads/@@')
+  TAG: ${{ github.ref_name }}
 
 jobs:
   build:
