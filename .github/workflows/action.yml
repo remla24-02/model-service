@@ -7,7 +7,7 @@ on:
       - v*
 
 permissions: 
-  actions: write
+  packages: write
 
 env:
   IMAGE_NAME: model_service
