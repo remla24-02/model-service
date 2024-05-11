@@ -6,10 +6,11 @@ on:
       - main
 
 env:
-  IMAGE_NAME: remla24_team02_model_service
+  IMAGE_NAME: model_service
   REGISTRY: ghcr.io
   USERNAME: ${{ github.repository_owner }}
-  TAG: ${{ github.ref }}
+  RAW_TAG: ${{ github.ref }}
+  TAG: $(echo "${RAW_TAG}" | sed 's@refs/heads/@@')
 
 jobs:
   build:
@@ -32,3 +33,4 @@ jobs:
         env:
             API_KEY: ${{ secrets.API_KEY }}
             APP_NAME: ${{ vars.APP_NAME }}
+
