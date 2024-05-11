@@ -24,6 +24,8 @@ def get_model():
     bucket_name = 'dvc-remla24-02'
     key = 'data/files/md5/8d/f32b50c3e19897d9b981ae186dfd78'
 
+    os.makedirs(os.path.join('model'), exist_ok=True)
+
     download_data(bucket_name, key.rstrip('\n'),
                   os.path.join('model', 'trained_model.joblib'))
 

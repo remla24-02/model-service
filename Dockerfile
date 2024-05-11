@@ -1,8 +1,16 @@
-FROM python:3.12.3-slim-bullseye AS base
-RUN apt-get update \
-    && apt-get upgrade -y \
-    && apt-get install -y --no-install-recommends curl git build-essential \
+FROM nvcr.io/nvidia/driver:550-5.15.0-1059-oracle-ubuntu22.04 AS base
+RUN apt-get -y update \
+    && apt-get install -y software-properties-common \
+    && apt-get -y update \
+    && add-apt-repository universe \
+    && add-apt-repository ppa:deadsnakes/ppa
+RUN apt-get -y update
+RUN apt-get -y install python3.12 \
+    python3-pip \
     && apt-get autoremove -y
+
+RUN pip3 install --user --upgrade pip
+
 ENV POETRY_HOME="/opt/poetry"
 ENV PYTHONDONTWRITEBYTECODE 1
 RUN curl -sSL https://install.python-poetry.org | python3 -
@@ -31,6 +39,10 @@ ENV PYTHONPATH=/home/remla24_team02/ PYTHONHASHSEED=0
 
 COPY app/ app/
 COPY config.ini ./
+
+RUN if [ -f .env ]; then \
+    COPY .env .env; \
+    fi
 
 RUN addgroup --system --gid 1001 "app-user"
 RUN adduser --system --uid 1001 "app-user"
