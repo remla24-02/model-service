@@ -24,6 +24,19 @@ Next, open a new shell for the environment with the following command:
 poetry shell
 ```
 
+## Configuration
+Create a `.env` file containing:
+
+``` file
+APP_NAME=               (default: Client API)
+IS_DEBUG=               (default: False)
+HOST=                   (default: 0.0.0.0)
+PORT=                   (default: 8080)
+API_KEY=                (secret)
+DEFAULT_MODEL_PATH=     (default: ./model/trained_model.joblib)
+ALLOWED_HOSTS=          (default: *)
+```
+
 
 ## Usage
 1. To run the app
