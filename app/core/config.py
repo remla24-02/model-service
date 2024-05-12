@@ -5,7 +5,7 @@ from starlette.datastructures import Secret
 
 config = Config(".env")
 
-APP_VERSION = "0.0.1"
+APP_VERSION = "0.0.2"
 API_PREFIX = "/api"
 APP_NAME: str = config("APP_NAME", default="Client API")
 
