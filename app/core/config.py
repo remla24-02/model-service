@@ -3,7 +3,7 @@ from typing import List
 from starlette.config import Config
 from starlette.datastructures import Secret
 
-config = Config()
+config = Config(".env")
 
 APP_VERSION = "0.0.1"
 API_PREFIX = "/api"

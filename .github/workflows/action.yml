@@ -22,6 +22,14 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+      - name: Make envfile
+        uses: SpicyPizza/create-envfile@v2.0
+        with:
+          envkey_IS_DEBUG: False
+          envkey_APP_NAME: ${{ vars.APP_NAME }}
+          envkey_API_KEY: ${{ secrets.API_KEY }}
+          file_name: .env
+          fail_on_empty: true
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
       - name: Registry Login (ghcr.io)
@@ -34,7 +42,4 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ${{ env.REGISTRY }}/${{ env.USERNAME }}/${{ env.IMAGE_NAME }}:${{ env.TAG }}
-        env:
-            API_KEY: ${{ secrets.API_KEY }}
-            APP_NAME: ${{ vars.APP_NAME }}
 
