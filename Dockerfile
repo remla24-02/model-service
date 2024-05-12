@@ -57,6 +57,9 @@ RUN adduser --system --uid 1001 "app-user"
 RUN mkdir -p model && \
     chown -R app-user:app-user model
 
+ENV CUDNN_PATH=/usr/local/lib/python3.12/dist-packages/nvidia/cudnn
+ENV LD_LIBRARY_PATH=${CUDNN_PATH}/lib
+
 USER "app-user"
 
 EXPOSE 8080
