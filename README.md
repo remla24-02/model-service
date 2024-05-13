@@ -60,7 +60,7 @@ python ./app/main.py
 
 ## Usage
 
-1. Then go to [http://localhost:8000/docs](http://localhost:8000/docs).
+1. Then go to [http://localhost:8080/docs](http://localhost:8080/docs).
 
 2. Click `authorize` and enter the API key
 
