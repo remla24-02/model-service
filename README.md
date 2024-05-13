@@ -10,22 +10,16 @@ Poetry can be installed with pip with the following command:
 pip install poetry
 ```
 
-## Installation
+To run on a NVidia GPU
 
 ``` console
-git clone https://github.com/remla24-02/model-service.git
-cd model
-poetry install --no-root
+sudo apt-get install -y nvidia-container-toolkit nvidia-docker2
+sudo systemctl restart docker
 ```
 
-This cloned the repository and installed all the packages into an environment.
-Next, open a new shell for the environment with the following command:
-``` console
-poetry shell
-```
 
 ## Configuration
-Create a `.env` file containing:
+For running locally or when building the Dockerfile, create a `.env` file containing:
 
 ``` file
 APP_NAME=               (default: Client API)
@@ -38,18 +32,47 @@ ALLOWED_HOSTS=          (default: *)
 ```
 
 
-## Usage
-1. To run the app
+## Installation
+
+### Docker
+
+From the Github Package registry:
 
 ``` console
+docker pull ghcr.io/remla24-02/model_service:latest
+docker run -p 8080:8080 --name model_service -it ghcr.io/remla24-02/model_service:latest
+```
+
+Build from source:
+
+``` console
+docker build . -t model_service
+docker run -p 8080:8080 --name model_service -it model_service
+```
+
+### Local
+To run the application without using Docker:
+
+``` console
+git clone https://github.com/remla24-02/model-service.git
+cd model
+poetry install --no-root
+```
+
+This cloned the repository and installed all the packages into an environment.
+Next, open a new shell for the environment with the following command:
+``` console
+poetry shell
 python ./app/main.py
 ```
 
-2. Then go to [http://localhost:8000/docs](http://localhost:8000/docs).
+## Usage
 
-3. Click `authorize` and enter the API key
+1. Then go to [http://localhost:8000/docs](http://localhost:8000/docs).
 
-4. Use the prediction POST API to do a prediction on a URL.
+2. Click `authorize` and enter the API key
+
+3. Use the prediction POST API to do a prediction on a URL.
 
 ### POST Request
 To perform a POST request on `/predict` you must include the API key as `token` in the header. The body must look like this:
@@ -64,7 +87,7 @@ Your then get back a JSON response containing:
 
 ``` json
 {
-  "prediction": <prediction>
+  "prediction": <0|1>
 }
 ```
 

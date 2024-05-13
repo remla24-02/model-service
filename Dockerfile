@@ -1,26 +1,9 @@
-FROM nvidia/cuda:12.4.1-cudnn-devel-ubuntu22.04 AS base
+FROM python:3.12.3-slim-bullseye AS base
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get -y update \
-    && apt-get install -y software-properties-common \
-    && apt-get -y update \
-    && add-apt-repository universe \
-    && add-apt-repository ppa:deadsnakes/ppa
-RUN apt-get remove -y python3.10
-RUN apt-get -y update
-RUN apt-get -y install python3.12 \
-    python3.12-distutils \
-    python3.12-dev \
-    python3.12-venv \
-    curl \
+    && apt-get -y upgrade \
+    && apt-get install -y curl \
     && apt-get autoremove -y
-
-RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.12 1
-RUN update-alternatives --install /usr/bin/python python /usr/bin/python3.12 1
-RUN update-alternatives --set python3 /usr/bin/python3.12
-RUN update-alternatives --set python /usr/bin/python3.12
-
-RUN python -m ensurepip --upgrade \
-    && pip3 install --upgrade pip
 
 ENV POETRY_HOME="/opt/poetry"
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -56,9 +39,6 @@ RUN adduser --system --uid 1001 "app-user"
 
 RUN mkdir -p model && \
     chown -R app-user:app-user model
-
-ENV CUDNN_PATH=/usr/local/lib/python3.12/dist-packages/nvidia/cudnn
-ENV LD_LIBRARY_PATH=${CUDNN_PATH}/lib
 
 USER "app-user"
 
