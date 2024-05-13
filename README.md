@@ -10,14 +10,6 @@ Poetry can be installed with pip with the following command:
 pip install poetry
 ```
 
-To run on a NVidia GPU
-
-``` console
-sudo apt-get install -y nvidia-container-toolkit nvidia-docker2
-sudo systemctl restart docker
-```
-
-
 ## Configuration
 For running locally or when building the Dockerfile, create a `.env` file containing:
 
