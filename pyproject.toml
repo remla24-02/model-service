@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "model-service"
+version = "0.0.4"
+description = "A scalable wrapper service for the ML model, providing a REST API to query the model."
+authors = ["Rodin Haker <R.Haker@student.tudelft.nl>", "Arjan Hasami <A.Hasami@student.tudelft.nl>",
+    "Nada Mouman <N.Mouman@student.tudelft.nl>", "Thijs Penning <T.J.Penning@student.tudelft.nl>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+boto3 = "^1.34.102"
+fastapi = "^0.111.0"
+lib-ml-remla24-team02 = "*"
+numpy = "^1.26.4"
+joblib = "^1.4.2"
+tensorflow = "^2.16.1"
+tensorflow-intel = {version = "^2.16.1", markers = "sys_platform == 'win32'"}
+uvicorn = "^0.29.0"
+
+[[tool.poetry.source]]
+name = "nvidia"
+url = "https://pypi.nvidia.com/"
+priority = "supplemental"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

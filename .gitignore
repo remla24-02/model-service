@@ -1,0 +1,13 @@
+*.env
+.venv
+.vscode
+__pycache__/
+.idea
+
+*.py[cod]
+*$py.class
+
+*.so
+*.lock
+
+model/*
