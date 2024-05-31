@@ -17,17 +17,13 @@ logger = AppLogger.__call__().get_logger()
 def _download_model() -> None:
     logger.info("Downloading model.")
     get_model()
-    logger.info("Model downloaded.")
 
 
 def _startup_model(app: FastAPI) -> None:
     logger.info("Starting up model.")
 
-    try:
-        model_instance = PhishingModel(DEFAULT_MODEL_PATH)
-    except FileNotFoundError:
-        _download_model()
-        model_instance = PhishingModel(DEFAULT_MODEL_PATH)
+    _download_model()
+    model_instance = PhishingModel(DEFAULT_MODEL_PATH)
 
     app.state.model = model_instance
 
