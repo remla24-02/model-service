@@ -42,6 +42,6 @@ RUN mkdir -p model && \
 
 USER "app-user"
 
-EXPOSE 8080
+EXPOSE 5001
 
 CMD ["python3", "./app/main.py"]

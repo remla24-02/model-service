@@ -10,7 +10,7 @@ API_PREFIX = "/api"
 APP_NAME: str = config("APP_NAME", default="Client API")
 
 HOST: str = config("HOST", default='0.0.0.0')
-PORT: int = config("PORT", cast=int, default=8080)
+PORT: int = config("PORT", cast=int, default=5001)
 
 
 API_KEY: Secret = config("API_KEY", cast=Secret)

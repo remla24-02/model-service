@@ -17,7 +17,7 @@ For running locally or when building the Dockerfile, create a `.env` file contai
 APP_NAME=               (default: Client API)
 IS_DEBUG=               (default: False)
 HOST=                   (default: 0.0.0.0)
-PORT=                   (default: 8080)
+PORT=                   (default: 5001)
 API_KEY=                (secret)
 DEFAULT_MODEL_PATH=     (default: ./model/trained_model.joblib)
 ALLOWED_HOSTS=          (default: *)
@@ -32,14 +32,14 @@ From the Github Package registry:
 
 ``` console
 docker pull ghcr.io/remla24-02/model_service:latest
-docker run -p 8080:8080 --name model_service -it ghcr.io/remla24-02/model_service:latest
+docker run -p 5001:5001 --name model_service -it ghcr.io/remla24-02/model_service:latest
 ```
 
 Build from source:
 
 ``` console
 docker build . -t model_service
-docker run -p 8080:8080 --name model_service -it model_service
+docker run -p 5001:5001 --name model_service -it model_service
 ```
 
 ### Local
@@ -60,7 +60,7 @@ python ./app/main.py
 
 ## Usage
 
-1. Then go to [http://localhost:8080/docs](http://localhost:8080/docs).
+1. Then go to [http://localhost:5001/docs](http://localhost:5001/docs).
 
 2. Click `authorize` and enter the API key
 
