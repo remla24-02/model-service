@@ -10,6 +10,12 @@ Poetry can be installed with pip with the following command:
 pip install poetry
 ```
 
+The packages can then be installed and a new shell opened with the following commands:
+``` conslle
+poetry install --no-root
+poetry shell
+```
+
 ## Configuration
 For running locally or when building the Dockerfile, create a `.env` file containing:
 
@@ -28,7 +34,7 @@ ALLOWED_HOSTS=          (default: *)
 
 ### Docker
 
-From the Github Package registry:
+From the GitHub Package registry:
 
 ``` console
 docker pull ghcr.io/remla24-02/model_service:latest
