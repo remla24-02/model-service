@@ -2,7 +2,7 @@ FROM python:3.12.3-slim-bullseye AS base
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get -y update \
     && apt-get -y upgrade \
-    && apt-get install -y curl \
+    && apt-get install -y curl git \
     && apt-get autoremove -y
 
 ARG AWS_ACCESS_KEY_ID
