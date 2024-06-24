@@ -5,6 +5,14 @@ RUN apt-get -y update \
     && apt-get install -y curl \
     && apt-get autoremove -y
 
+ARG AWS_ACCESS_KEY_ID
+ARG AWS_SECRET_ACCESS_KEY
+ARG MODEL_TAG
+
+ENV AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+ENV AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+ENV MODEL_TAG=${MODEL_TAG}
+
 ENV POETRY_HOME="/opt/poetry"
 ENV PYTHONDONTWRITEBYTECODE 1
 RUN curl -sSL https://install.python-poetry.org | python3 -
