@@ -29,11 +29,6 @@ RUN poetry config virtualenvs.create false \
     && poetry install $INSTALL_ARGS
 
 RUN curl -sSL https://install.python-poetry.org | python3 - --uninstall
-RUN apt-get purge -y curl git build-essential \
-    && apt-get clean -y \
-    && rm -rf /root/.cache \
-    && rm -rf /var/apt/lists/* \
-    && rm -rf /var/cache/apt/*
 
 FROM install as app-image
 
