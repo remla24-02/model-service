@@ -7,5 +7,5 @@ if __name__ == "__main__":
 
     app = "core.app:app"
 
-    uvicorn.run(app, host=HOST, port=PORT, log_level=IS_DEBUG and "debug" or "info",
-                reload=IS_DEBUG, log_config='./config.ini', use_colors=True, reload_dirs=['app'])
+    uvicorn.run(app, host=HOST, port=PORT, log_level="info",
+                reload=False, log_config='./config.ini', use_colors=True, reload_dirs=['app'])

@@ -27,6 +27,7 @@ PORT=                   (default: 5001)
 API_KEY=                (secret)
 DEFAULT_MODEL_PATH=     (default: ./model/trained_model.joblib)
 ALLOWED_HOSTS=          (default: *)
+MODEL_TAG=              (default: stable)
 ```
 
 
@@ -61,6 +62,7 @@ This cloned the repository and installed all the packages into an environment.
 Next, open a new shell for the environment with the following command:
 ``` console
 poetry shell
+export MODEL_TAG=stable
 python ./app/main.py
 ```
 
