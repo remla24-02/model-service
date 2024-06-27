@@ -89,6 +89,33 @@ Your then get back a JSON response containing:
 }
 ```
 
+## Creating a new stable or canary release
+When setting up the project using Vagrant/Ansible (see operations repository), we look for the latest stable and canary releases. These have to be manually tagged. The procedure for this is documented below.
+
+We must first authenticate to the Github Package Registry (note that this requires a classic Personal Access Token with the permission `write:packages`):
+
+```command
+echo PERSONAL_ACCESS_TOKEN | docker login ghcr.io -u remla24-02 --password-stdin
+```
+
+Now that we are authenticated, we have to pull the version that we want to tag as `stable` or `canary`:
+
+```command
+docker pull ghcr.io/remla24-02/model-service:VERSION
+```
+
+We now add the `stable` or the `canary` tag:
+
+```command
+docker tag ghcr.io/remla24-02/model-service:VERSION ghcr.io/remla24-02/model-service:TAG
+```
+
+Finally, we push the package with the `stable` or `canary` tag to the GHCR:
+
+```command
+docker push ghcr.io/remla24-02/model-service:TAG
+```
+
 ## Versioning
 
 For versioning, we used the GitHub Action provided by [anothrNick](https://github.com/anothrNick/github-tag-action).
